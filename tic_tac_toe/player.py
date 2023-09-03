@@ -82,13 +82,8 @@ class HumanPlayer(BasePlayer):
 class ComputerPlayer(BasePlayer):
     """Подкласс игрока-компьютера."""
     def choose_cell(self, board: Board) -> None:
-        # Поиск пустых клеток
-        empty_cells = [
-            cell for row in board.cells for cell in row
-            if cell.value == CellValue.empty
-        ]
-        if len(empty_cells) == 0:
+        if len(board.empty_cells) == 0:
             raise Exception("No empty cells left.")
         # Выбор случайной пустой клетки
-        random_cell = random.choice(empty_cells)
+        random_cell = random.choice(board.empty_cells)
         self.target_cell_address = random_cell.address

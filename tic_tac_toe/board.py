@@ -39,3 +39,10 @@ class Board:
     def accept_move(self, address: tuple[int, int], mark: str) -> None:
         """Записывает изменения на игровое поле."""
         self.cells[address[0]][address[1]].value = CellValue(mark)
+
+    @property
+    def empty_cells(self) -> list[list[Cell]]:
+        return [
+            cell for row in self.cells for cell in row
+            if cell.value == CellValue.empty
+        ]
