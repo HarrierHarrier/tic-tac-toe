@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "tic-tac-toe"
+version = "0.1.0"
+description = "Console tic-tac-toe game"
+authors = ["Vitaly Lunev <v.lunev.mail@gmail.com>"]
+readme = "README.md"
+packages = [{include = "tic_tac_toe"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
