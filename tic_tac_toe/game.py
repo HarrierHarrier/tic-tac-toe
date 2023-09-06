@@ -1,7 +1,8 @@
 import random
 
 from board import Board
-from player import ComputerPlayer, HumanPlayer
+from player import BasePlayer, ComputerPlayer, HumanPlayer
+
 
 class Game:
     def __init__(self) -> None:

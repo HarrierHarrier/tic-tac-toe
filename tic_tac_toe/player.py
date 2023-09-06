@@ -12,7 +12,7 @@ class BasePlayer:
 
     def choose_cell(self, board: Board) -> None:
         """Выбор игроком клетки.
-        
+
         Игрок-пользователь смотрит на поле в консольном выводе и сообщает о
         своём выборе через ввод.
 
@@ -28,7 +28,6 @@ class BasePlayer:
         self.choose_cell(board)
         # Сообщение игровому полю о решении
         board.accept_move(self.target_cell_address, self.mark)
-
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}, mark '{self.mark}'"

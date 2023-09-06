@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class CellValue(str, Enum):
     empty = ' '
     cross = 'X'

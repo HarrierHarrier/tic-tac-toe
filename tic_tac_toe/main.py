@@ -1,5 +1,6 @@
 from game import Game
 
+
 def greet_user() -> None:
     """Приветственное сообщение пользователю."""
     print(
