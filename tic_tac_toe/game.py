@@ -27,6 +27,7 @@ class Game:
         print(message)
 
     def check_victory(self, player: BasePlayer) -> None:
+        """Проверка условий победы игрока в текущем состоянии игры."""
         conditions = (
             # Проверка строк
             any(
@@ -55,6 +56,8 @@ class Game:
             sys.exit()
 
     def check_draw(self) -> None:
+        """Проверка условия ничьей (нет пустых клеток). Должна выполняться
+        после проверки условий победы."""
         if len(self.board.empty_cells) == 0:
             print("Ничья!")
             sys.exit()
