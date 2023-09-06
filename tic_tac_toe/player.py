@@ -55,7 +55,7 @@ class HumanPlayer(BasePlayer):
                 )
                 continue
             try:
-                coordinates = [int(item.strip()) for item in coordinates]
+                coordinates = [int(item.strip()) - 1 for item in coordinates]
                 # Проверка того, что клетка находтся на поле
                 if any(value >= board.size for value in coordinates):
                     print(
