@@ -22,7 +22,9 @@ def main():
             # Отображение текущего состояния игрового поля
             game.board.display()
             # Проверка условия победы
-            pass
+            game.check_victory(player=player)
+            # Проверка ничьей
+            game.check_draw()
 
 
 if __name__ == '__main__':
