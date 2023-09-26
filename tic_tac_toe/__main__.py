@@ -20,7 +20,7 @@ def main():
             # Ход текущего игрока
             player.make_move(game.board)
             # Отображение текущего состояния игрового поля
-            game.board.display()
+            print(game.board.display())
             # Проверка условия победы
             game.check_victory(player=player)
             # Проверка ничьей

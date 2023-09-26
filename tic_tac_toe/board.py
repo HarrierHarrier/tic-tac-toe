@@ -30,13 +30,19 @@ class Board:
             for i in range(self.size)
         ]
 
-    def display(self) -> None:
+    def display(self) -> str:
         """Выводит поле в текущем состоянии."""
         border_length = self.size * 4 + 1
-        print('-' * border_length)
+        state = '-' * border_length
         for row in self.cells:
-            print('|', ' | '.join(item.value for item in row), '|')
-            print('-' * border_length)
+            state += (
+                '\n'
+                + '| '
+                + ' | '.join(item.value for item in row)
+                + ' |'
+            )
+            state += '\n' + '-' * border_length
+        return state
 
     def accept_move(self, row: int, col: int, mark: str) -> None:
         """Записывает изменения на игровое поле."""
