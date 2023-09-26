@@ -1,8 +1,8 @@
 import random
 import sys
 
-from board import Board
-from player import BasePlayer, ComputerPlayer, HumanPlayer
+from tic_tac_toe.board import Board
+from tic_tac_toe.player import BasePlayer, ComputerPlayer, HumanPlayer
 
 
 class Game:

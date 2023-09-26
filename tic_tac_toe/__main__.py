@@ -1,4 +1,4 @@
-from game import Game
+from tic_tac_toe.game import Game
 
 
 def greet_user() -> None:

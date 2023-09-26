@@ -1,7 +1,7 @@
 import random
 import sys
 
-from board import Board, CellValue
+from tic_tac_toe.board import Board, CellValue
 
 
 class BasePlayer:
