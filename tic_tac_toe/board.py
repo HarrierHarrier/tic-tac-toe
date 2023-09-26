@@ -29,6 +29,7 @@ class Board:
             [Cell(i, j, ' ') for j in range(self.size)]
             for i in range(self.size)
         ]
+        self.empty_cells = set(cell for row in self.cells for cell in row)
 
     def display(self) -> str:
         """Выводит поле в текущем состоянии."""
@@ -46,11 +47,6 @@ class Board:
 
     def accept_move(self, row: int, col: int, mark: str) -> None:
         """Записывает изменения на игровое поле."""
-        self.cells[row][col].value = CellValue(mark)
-
-    @property
-    def empty_cells(self) -> list[list[Cell]]:
-        return [
-            cell for row in self.cells for cell in row
-            if cell.value == CellValue.empty
-        ]
+        target_cell = self.cells[row][col]
+        target_cell.value = CellValue(mark)
+        self.empty_cells.remove(target_cell)

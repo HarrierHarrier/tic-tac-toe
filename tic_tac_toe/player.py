@@ -87,5 +87,5 @@ class ComputerPlayer(BasePlayer):
         if len(board.empty_cells) == 0:
             raise Exception("No empty cells left.")
         # Выбор случайной пустой клетки
-        random_cell = random.choice(board.empty_cells)
+        random_cell = random.choice(list(board.empty_cells))
         self.target_row, self.target_col = random_cell.row, random_cell.col
