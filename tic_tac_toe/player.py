@@ -8,7 +8,8 @@ class BasePlayer:
     """Базовый класс игрока."""
     def __init__(self) -> None:
         self.mark: str | None = None
-        self.target_cell_address: tuple[int, int] | None = None
+        self.target_row: int | None = None
+        self.target_col: int | None = None
 
     def choose_cell(self, board: Board) -> None:
         """Выбор игроком клетки.
@@ -27,7 +28,9 @@ class BasePlayer:
         # Выбор клетки
         self.choose_cell(board)
         # Сообщение игровому полю о решении
-        board.accept_move(self.target_cell_address, self.mark)
+        board.accept_move(
+            row=self.target_row, col=self.target_col, mark=self.mark
+        )
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}, mark '{self.mark}'"
@@ -70,7 +73,7 @@ class HumanPlayer(BasePlayer):
                         "Эта клетка уже занята. Попробуйте ещё раз."
                     )
                     continue
-                self.target_cell_address = coordinates
+                self.target_row, self.target_col = coordinates
                 break
             except ValueError:
                 print(
@@ -85,4 +88,4 @@ class ComputerPlayer(BasePlayer):
             raise Exception("No empty cells left.")
         # Выбор случайной пустой клетки
         random_cell = random.choice(board.empty_cells)
-        self.target_cell_address = random_cell.address
+        self.target_row, self.target_col = random_cell.row, random_cell.col

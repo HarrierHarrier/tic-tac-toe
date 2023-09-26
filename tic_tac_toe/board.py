@@ -9,12 +9,15 @@ class CellValue(str, Enum):
 
 class Cell:
     """Клетка игрового поля."""
-    def __init__(self, address: tuple[int, int], value: str) -> None:
-        self.address = address
+    def __init__(self, row: int, col: int, value: str) -> None:
+        self.row = row
+        self.col = col
         self.value = CellValue(value)
 
     def __repr__(self) -> str:
-        return f"<{self.__class__.__name__} {self.address} - {self.value}>"
+        return (
+            f"{self.__class__.__name__}({self.row}, {self.col}, {self.value})"
+        )
 
 
 class Board:
@@ -23,10 +26,8 @@ class Board:
         self.size = size
         # Генерация пустых клеток поля
         self.cells = [
-            [
-                # !!! Важен порядок индексов !!!
-                Cell((i, j), ' ') for j in range(self.size)
-            ] for i in range(self.size)
+            [Cell(i, j, ' ') for j in range(self.size)]
+            for i in range(self.size)
         ]
 
     def display(self) -> None:
@@ -37,9 +38,9 @@ class Board:
             print('|', ' | '.join(item.value for item in row), '|')
             print('-' * border_length)
 
-    def accept_move(self, address: tuple[int, int], mark: str) -> None:
+    def accept_move(self, row: int, col: int, mark: str) -> None:
         """Записывает изменения на игровое поле."""
-        self.cells[address[0]][address[1]].value = CellValue(mark)
+        self.cells[row][col].value = CellValue(mark)
 
     @property
     def empty_cells(self) -> list[list[Cell]]:
