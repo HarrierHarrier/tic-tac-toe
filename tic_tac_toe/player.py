@@ -12,14 +12,7 @@ class Player:
         self.target_col: int | None = None
 
     def choose_cell(self, board: Board) -> Cell:
-        """Выбор игроком клетки.
-
-        Игрок-пользователь смотрит на поле в консольном выводе и сообщает о
-        своём выборе через ввод.
-
-        Игрок-компьютер ищет пустые клетки на поле и выбирает случайную из
-        них.
-        """
+        """Выбор игроком клетки."""
         pass
 
     def __repr__(self) -> str:
@@ -29,6 +22,8 @@ class Player:
 class HumanPlayer(Player):
     """Подкласс игрока-пользователя."""
     def choose_cell(self, board: Board) -> Cell:
+        """Игрок-пользователь смотрит на поле в консольном выводе и сообщает о
+        своём выборе через ввод."""
         print(
             "Введите координаты ячейки через запятую. Сначала номер строки,"
             " затем номер столбца."
@@ -73,6 +68,8 @@ class HumanPlayer(Player):
 class ComputerPlayer(Player):
     """Подкласс игрока-компьютера."""
     def choose_cell(self, board: Board) -> Cell:
+        """Игрок-компьютер ищет пустые клетки на поле и выбирает случайную из
+        них."""
         if len(board.empty_cells) == 0:
             raise Exception("No empty cells left.")
         # Выбор случайной пустой клетки
