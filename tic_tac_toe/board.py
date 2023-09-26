@@ -45,8 +45,7 @@ class Board:
             state += '\n' + '-' * border_length
         return state
 
-    def accept_move(self, row: int, col: int, mark: str) -> None:
+    def accept_move(self, cell: Cell, mark: str) -> None:
         """Записывает изменения на игровое поле."""
-        target_cell = self.cells[row][col]
-        target_cell.value = CellValue(mark)
-        self.empty_cells.remove(target_cell)
+        cell.value = mark
+        self.empty_cells.remove(cell)

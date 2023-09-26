@@ -18,7 +18,8 @@ def main():
         # Ходы сторон
         for player in game.opponents:
             # Ход текущего игрока
-            player.make_move(game.board)
+            cell = player.choose_cell(game.board)
+            game.board.accept_move(cell, player.mark)
             # Отображение текущего состояния игрового поля
             print(game.board.display())
             # Проверка условия победы

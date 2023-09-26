@@ -1,17 +1,17 @@
 import random
 import sys
 
-from tic_tac_toe.board import Board, CellValue
+from tic_tac_toe.board import Board, Cell, CellValue
 
 
-class BasePlayer:
+class Player:
     """Базовый класс игрока."""
-    def __init__(self) -> None:
-        self.mark: str | None = None
+    def __init__(self, mark: CellValue = ' ') -> None:
+        self.mark = mark
         self.target_row: int | None = None
         self.target_col: int | None = None
 
-    def choose_cell(self, board: Board) -> None:
+    def choose_cell(self, board: Board) -> Cell:
         """Выбор игроком клетки.
 
         Игрок-пользователь смотрит на поле в консольном выводе и сообщает о
@@ -22,23 +22,13 @@ class BasePlayer:
         """
         pass
 
-    def make_move(self, board: Board) -> None:
-        """Совершение хода игроком."""
-        print(f"Ход {self}")
-        # Выбор клетки
-        self.choose_cell(board)
-        # Сообщение игровому полю о решении
-        board.accept_move(
-            row=self.target_row, col=self.target_col, mark=self.mark
-        )
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}, mark '{self.mark}'"
 
 
-class HumanPlayer(BasePlayer):
+class HumanPlayer(Player):
     """Подкласс игрока-пользователя."""
-    def choose_cell(self, board: Board) -> None:
+    def choose_cell(self, board: Board) -> Cell:
         print(
             "Введите координаты ячейки через запятую. Сначала номер строки,"
             " затем номер столбца."
@@ -67,25 +57,24 @@ class HumanPlayer(BasePlayer):
                     )
                     continue
                 # Проверка, что клетка не занята
-                board_cell = board.cells[coordinates[0]][coordinates[1]]
-                if board_cell.value != CellValue.empty:
+                chosen_cell = board.cells[coordinates[0]][coordinates[1]]
+                if chosen_cell.value != CellValue.empty:
                     print(
                         "Эта клетка уже занята. Попробуйте ещё раз."
                     )
                     continue
-                self.target_row, self.target_col = coordinates
-                break
+                return chosen_cell
             except ValueError:
                 print(
                     "Значения должны быть целыми числами. Попробуйте ещё раз."
                 )
 
 
-class ComputerPlayer(BasePlayer):
+class ComputerPlayer(Player):
     """Подкласс игрока-компьютера."""
-    def choose_cell(self, board: Board) -> None:
+    def choose_cell(self, board: Board) -> Cell:
         if len(board.empty_cells) == 0:
             raise Exception("No empty cells left.")
         # Выбор случайной пустой клетки
-        random_cell = random.choice(list(board.empty_cells))
-        self.target_row, self.target_col = random_cell.row, random_cell.col
+        chosen_cell = random.choice(list(board.empty_cells))
+        return chosen_cell

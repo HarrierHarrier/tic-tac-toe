@@ -2,7 +2,7 @@ import random
 import sys
 
 from tic_tac_toe.board import Board
-from tic_tac_toe.player import BasePlayer, ComputerPlayer, HumanPlayer
+from tic_tac_toe.player import Player, ComputerPlayer, HumanPlayer
 
 
 class Game:
@@ -26,7 +26,7 @@ class Game:
             message = "Первый ход - ваш."
         print(message)
 
-    def check_victory(self, player: BasePlayer) -> None:
+    def check_victory(self, player: Player) -> None:
         """Проверка условий победы игрока в текущем состоянии игры."""
         conditions = (
             # Проверка строк
